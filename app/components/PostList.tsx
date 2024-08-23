@@ -1,5 +1,6 @@
 import {Post, PostsResponse} from "../lib/types/index"
 import React, { useEffect, useState } from 'react';
+import Spinner from "./Spinner"
 
 const PostList: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -30,7 +31,7 @@ const PostList: React.FC = () => {
             <li key={post.id}>
               <p>ID: {post.id}</p>
               <p>Updated Time: {new Date(post.created_time).toLocaleString()}</p>
-              <p> {post.message} </p>
+              <p> {post?.message} </p>
             </li>
           ))}
         </ul>
@@ -41,7 +42,8 @@ const PostList: React.FC = () => {
   return (
     <div className="bg-[#202020] rounded p-4 m-2">
       <h1>Posts</h1>
-      {posts.length}
+      {posts.length ? (posts.length) : <Spinner />}
+      {/* <Spinner /> */}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import {Conversation, ConversationsResponse} from "../lib/types/index"
 import React, { useEffect, useState } from 'react';
+import Spinner from "./Spinner"
 
 // grey = #202020
 const ConversationsList: React.FC = () => {
@@ -44,7 +45,7 @@ const ConversationsList: React.FC = () => {
   return (
     <div className="bg-[#202020] rounded p-4 m-2">
       <h1>Conversations</h1>
-      {conversations.length}
+      {conversations.length ? (conversations.length) : <Spinner />}
     </div>
   );
 };
