@@ -44,7 +44,7 @@ const ConversationsList: React.FC = () => {
    
   return (
     <div className="bg-[#202020] rounded p-4 m-2">
-      <h1>Conversations</h1>
+      <h1>Chats</h1>
       {conversations.length ? (conversations.length) : <Spinner />}
     </div>
   );

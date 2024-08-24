@@ -1,12 +1,21 @@
 import {Post, PostsResponse} from "../lib/types/index"
 import React, { useEffect, useState } from 'react';
 import Spinner from "./Spinner"
+import RatingsModal from "./RatingsModal"
 
 const PostList: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [modalVisible, setModalVisible] = useState<boolean | null>(false);
 
+  const handleOpenModal = () => setModalVisible(true);
+  const handleCloseModal = () => {
+    setModalVisible(false)
+    console.log('Before setting state:', modalVisible)
+  };
+  
   useEffect(() => {
+    
     const fetchPosts = async () => {
       try {
         const response = await fetch('/api/page/posts');
@@ -40,10 +49,13 @@ const PostList: React.FC = () => {
   }
 
   return (
-    <div className="bg-[#202020] rounded p-4 m-2">
+    <div className="bg-[#202020] rounded p-4 m-2 cursor-pointer"
+      onClick={handleOpenModal}
+      >
       <h1>Posts</h1>
       {posts.length ? (posts.length) : <Spinner />}
-      {/* <Spinner /> */}
+      { modalVisible && (
+        <RatingsModal handleCloseModal={handleCloseModal}/>) }
     </div>
   );
 };
