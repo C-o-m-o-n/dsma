@@ -25,5 +25,4 @@ export async function GET() {
     return error;
   }
 
-}atings
-25
+}
